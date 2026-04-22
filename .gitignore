@@ -1,0 +1,6 @@
+# 白名單模式：預設排除所有檔案，只允許 index.html 和必要的 git/config 檔案
+*
+
+# 允許的檔案
+!.gitignore
+!index.html
