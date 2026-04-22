@@ -4,3 +4,4 @@
 # 允許的檔案
 !.gitignore
 !index.html
+!CNAME
