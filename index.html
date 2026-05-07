@@ -709,6 +709,81 @@
       font-weight: 700;
     }
 
+    .archive-access {
+      margin-top: 20px;
+      display: block;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, var(--amber-soft), transparent);
+      border: 1px solid var(--border-bright);
+      border-left: 3px solid var(--amber);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+    }
+
+    .archive-access:hover,
+    .archive-access:focus-visible {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 1px var(--amber-soft), 0 0 24px rgba(242, 169, 58, 0.18);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .archive-access__tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+      padding: 3px 10px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .archive-access__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .archive-access__title {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .archive-access__desc {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .archive-access__cta {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--amber-bright);
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .archive-access__cta .arrow {
+      display: inline-block;
+      transition: transform .25s ease;
+    }
+
+    .archive-access:hover .archive-access__cta .arrow {
+      transform: translateX(4px);
+    }
+
 
     /* ═══════════════════════════════════════════════════════════
      CH.02 — EVENT SPEC (two zones)
@@ -2650,6 +2725,17 @@
           第二屆要做的，是把 <strong>100 人 → 200 人</strong>、<strong>單日活動 → 4 個月曝光戰役</strong>。
         </p>
       </div>
+
+      <a class="archive-access reveal" href="https://openspace.vibes.com.tw" target="_blank" rel="noopener">
+        <span class="archive-access__tag">◉ ARCHIVE.access</span>
+        <div class="archive-access__row">
+          <div>
+            <div class="archive-access__title">FIRST COUNCIL · BEHIND THE SCENES</div>
+            <div class="archive-access__desc">首場實況檔案 · 現場氛圍 / 玩家反應 / 七宗罪據點</div>
+          </div>
+          <div class="archive-access__cta">點擊 openspace.vibes.com.tw <span class="arrow">→</span></div>
+        </div>
+      </a>
     </div>
   </section>
 
