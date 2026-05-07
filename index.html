@@ -1603,13 +1603,13 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-     CH.06 — ALLOCATION (sponsor tiers)
+     CH.06 — BUDGET (cost transparency)
      ═══════════════════════════════════════════════════════════ */
-    .allocation-intro {
+    .budget-intro {
       padding: 28px 32px;
       background: var(--bg-panel);
       border: 1px solid var(--border);
-      border-top: 3px solid var(--signal);
+      border-top: 3px solid var(--amber);
       margin-bottom: 48px;
       display: flex;
       justify-content: space-between;
@@ -1618,103 +1618,84 @@
       flex-wrap: wrap;
     }
 
-    .allocation-intro__label {
+    .budget-intro__label {
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: 0.22em;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .allocation-intro__scenario {
+    .budget-intro__scenario {
       font-family: var(--serif);
       font-size: 20px;
       color: var(--ink);
       font-weight: 700;
+      line-height: 1.5;
     }
 
-    .allocation-intro__scenario .amber {
+    .budget-intro__scenario .amber {
       color: var(--amber-bright);
     }
 
-    .allocation-intro__tag {
+    .budget-intro__tag {
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: 0.2em;
-      color: var(--signal-bright);
-      border: 1px solid var(--signal);
+      color: var(--amber-bright);
+      border: 1px solid var(--amber);
       padding: 6px 14px;
       font-weight: 600;
       white-space: nowrap;
     }
 
-    .tiers {
+    .budget {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
+      margin-bottom: 32px;
     }
 
     @media (max-width: 1080px) {
-      .tiers {
+      .budget {
         grid-template-columns: 1fr 1fr;
       }
     }
 
     @media (max-width: 640px) {
-      .tiers {
+      .budget {
         grid-template-columns: 1fr;
       }
     }
 
-    .tier {
+    .budget-card {
       background: var(--bg-panel);
       border: 1px solid var(--border);
-      padding: 32px 28px;
+      padding: 28px 24px;
       display: flex;
       flex-direction: column;
       position: relative;
       transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    .tier::before {
+    .budget-card::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--border);
+      background: var(--amber);
+      opacity: 0.45;
     }
 
-    .tier:hover {
+    .budget-card:hover {
       border-color: var(--border-bright);
       transform: translateY(-3px);
       background: var(--bg-elevated);
     }
 
-    .tier--crown::before {
-      background: var(--amber);
-    }
-
-    .tier--gold::before {
-      background: var(--amber-bright);
-      opacity: 0.7;
-    }
-
-    .tier--silver::before {
-      background: var(--text-dim);
-    }
-
-    .tier--goods::before {
-      background: var(--signal);
-    }
-
-    .tier--crown {
-      background: linear-gradient(180deg, rgba(212, 134, 26, 0.06) 0%, var(--bg-panel) 50%);
-      border-color: var(--border-bright);
-    }
-
-    .tier__tag {
+    .budget-card__tag {
       font-family: var(--mono);
       font-size: 10.5px;
       letter-spacing: 0.22em;
@@ -1722,116 +1703,239 @@
       margin-bottom: 10px;
     }
 
-    .tier--crown .tier__tag {
-      color: var(--amber);
-    }
-
-    .tier__name {
+    .budget-card__name {
       font-family: var(--serif);
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 800;
       color: var(--ink);
       margin-bottom: 14px;
       letter-spacing: 0.02em;
     }
 
-    .tier--crown .tier__name {
-      color: var(--amber-bright);
-    }
-
-    .tier__price {
+    .budget-card__price {
       font-family: var(--mono);
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
+      color: var(--amber-bright);
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px dashed var(--border);
       letter-spacing: -0.01em;
     }
 
-    .tier--crown .tier__price {
-      color: var(--amber-bright);
-      font-size: 20px;
-    }
-
-    .tier__slots {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      margin-bottom: 22px;
-      padding-bottom: 22px;
-      border-bottom: 1px dashed var(--border);
-    }
-
-    .tier__list {
+    .budget-card__list {
       list-style: none;
       padding: 0;
+      margin: 0;
       flex: 1;
-      margin-bottom: 20px;
     }
 
-    .tier__list li {
-      padding: 9px 0;
-      padding-left: 20px;
+    .budget-card__list li {
+      padding: 6px 0;
+      padding-left: 16px;
       position: relative;
-      font-size: 13.5px;
+      font-size: 13px;
       color: var(--text);
       line-height: 1.6;
     }
 
-    .tier__list li::before {
-      content: "▸";
+    .budget-card__list li::before {
+      content: "·";
       position: absolute;
       left: 0;
-      color: var(--amber);
+      color: var(--text-muted);
       font-family: var(--mono);
-      font-size: 10px;
-      top: 11px;
+      top: 4px;
     }
 
-    .tier--silver .tier__list li::before {
+    .budget-total {
+      padding: 32px 24px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-bright);
+      margin-bottom: 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .budget-total {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .budget-total__item {
+      padding: 0 12px;
+      border-right: 1px solid var(--border);
+    }
+
+    .budget-total__item:last-child {
+      border-right: none;
+    }
+
+    @media (max-width: 720px) {
+      .budget-total__item {
+        border-right: none;
+        border-bottom: 1px dashed var(--border);
+        padding-bottom: 16px;
+      }
+
+      .budget-total__item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    .budget-total__label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .budget-total__value {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .budget-total__item--target .budget-total__value {
+      color: var(--amber-bright);
+      font-size: 28px;
+    }
+
+    .anchors {
+      background: var(--amber-soft);
+      border: 1px solid var(--amber);
+      padding: 28px 32px;
+    }
+
+    .anchors__head {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--amber-bright);
+      margin-bottom: 18px;
+    }
+
+    .anchors__list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 640px) {
+      .anchors__list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .anchor {
+      text-align: center;
+      padding: 18px 12px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+    }
+
+    .anchor__price {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .anchor__note {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
       color: var(--text-dim);
     }
 
-    .tier--goods .tier__list li::before {
-      color: var(--signal);
+    .anchors__footer {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+      text-align: center;
     }
 
-    .tier__list li strong {
-      color: var(--ink);
-      font-weight: 700;
-    }
-
-    .tier__footer {
-      margin-top: auto;
-      padding-top: 20px;
-      border-top: 1px dashed var(--border);
-    }
-
-    .tier__cp {
-      font-family: var(--mono);
-      font-size: 11px;
+    .anchors__footer .em {
       color: var(--amber-bright);
-      letter-spacing: 0.1em;
-      line-height: 1.6;
-    }
-
-    .tier__cp strong {
-      font-size: 13px;
       font-weight: 700;
     }
 
-    .tier__suitable {
+    /* ═══════════════════════════════════════════════════════════
+     CH.07 — BENEFITS (shared across all sponsors)
+     ═══════════════════════════════════════════════════════════ */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .benefit {
+      display: flex;
+      gap: 16px;
+      padding: 22px 24px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      align-items: flex-start;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .benefit:hover {
+      border-color: var(--border-bright);
+      background: var(--bg-elevated);
+    }
+
+    .benefit__check {
       font-family: var(--mono);
-      font-size: 10.5px;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
+      color: var(--amber-bright);
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+      line-height: 1.5;
+    }
+
+    .benefit__text {
+      font-size: 14px;
+      color: var(--text);
       line-height: 1.7;
     }
 
-    .tier__suitable strong {
-      color: var(--signal-bright);
-      font-weight: 600;
+    .benefit__text strong {
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .benefits-note {
+      margin-top: 32px;
+      padding: 24px 28px;
+      background: var(--bg-panel);
+      border-left: 3px solid var(--amber);
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .benefits-note .em {
+      color: var(--amber-bright);
+      font-weight: 700;
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -2584,7 +2688,7 @@
     </div>
     <div class="top-bar__right">
       <span class="hide-mobile muted">ACCESS LEVEL:</span>
-      <span class="tag">SPONSOR-TIER</span>
+      <span class="tag">PARTNER-ACCESS</span>
     </div>
   </div>
 
@@ -2625,7 +2729,7 @@
       <p class="hero__sub hero-in" style="--d:5">
         這<span class="mark">不是研討會</span>，是一場 <span class="mark">200 人的 AI 議題派對</span>。<br>
         首場已驗證 · 第二屆擴大兩倍 · 2026 年 9 月 · 台北<br>
-        — 招募冠名 × 1、金級 × 2、銀級 × 3–5、物資贊助不限。
+        — 不分等級、不冠名，邀請夥伴一起把這場活動做出來。
       </p>
 
       <div class="hero__stats hero-in" style="--d:6">
@@ -2647,7 +2751,7 @@
       </div>
 
       <a href="#allocation" class="hero__cta hero-in" style="--d:6">
-        <span>REVIEW SPONSORSHIP TIERS</span>
+        <span>REVIEW THE BUDGET</span>
         <span class="arrow">→</span>
       </a>
 
@@ -3140,121 +3244,196 @@
   <div class="ornament">▗▘ ▙▚ ▛▝ ▗▘ ▙▚ ▛▝</div>
 
   <!-- ═══════════════════════════════════════════════════════════
-     CH.06 — ALLOCATION.log (贊助方案)
+     CH.06 — BUDGET.log (成本透明)
      ═══════════════════════════════════════════════════════════ -->
   <section class="section" id="allocation">
     <div class="section__inner">
       <div class="section__head reveal">
-        <div class="section__chapter">CH.06 _ ALLOCATION.log</div>
-        <div class="section__meta">RESOURCE ALLOCATION · TIER-BASED</div>
+        <div class="section__chapter">CH.06 _ BUDGET.log</div>
+        <div class="section__meta">COST TRANSPARENCY · NO TIERS</div>
       </div>
 
       <h2 class="section__title reveal">
-        贊助方案 · <span class="amber">資源配給</span>
+        為什麼需要<span class="amber">你的贊助</span>
       </h2>
       <p class="section__desc reveal">
-        四種份量、四種對應權益。冠名 1 名、金級 2 名、銀級 3–5 名、物資不限。
-        實際合作形式可彈性設計——我們更傾向「一起創造價值」而不是「單純貼 Logo」。
+        我們不分等級、不冠名、不販售權益階梯。
+        把成本攤開——你看到的，就是這場活動真實的樣子。
       </p>
 
-      <div class="allocation-intro reveal">
+      <div class="budget-intro reveal">
         <div>
-          <div class="allocation-intro__label">◉ TARGET SCENARIO</div>
-          <div class="allocation-intro__scenario">
-            1 冠名 + 2 金級 = <span class="amber">$200K – $250K</span>
+          <div class="budget-intro__label">◉ COST REALITY · 300 PEOPLE EVENT</div>
+          <div class="budget-intro__scenario">
+            一場正規執行需 <span class="amber">$400,000</span><br>
+            我們只募 <span class="amber">$150,000</span>
           </div>
         </div>
-        <div class="allocation-intro__tag">✓ 贊助目標 $150K · 已超越</div>
+        <div class="budget-intro__tag">✓ 其餘以專業、熱情、夥伴關係補齊</div>
       </div>
 
-      <div class="tiers">
+      <div class="budget">
 
-        <!-- CROWN -->
-        <div class="tier tier--crown reveal">
-          <div class="tier__tag">TIER · CROWN</div>
-          <div class="tier__name">冠名贊助</div>
-          <div class="tier__price">$100,000 – 150,000</div>
-          <div class="tier__slots">◉ 限 1 名</div>
-          <ul class="tier__list">
-            <li>全通路 Logo <strong>最大版位</strong></li>
-            <li>Podcast 6 集<strong>冠名口播</strong></li>
-            <li>Email 頂部 Logo + 連結</li>
-            <li>大活動<strong>體驗攤位</strong>（5 攤之首 · 最佳位置）</li>
-            <li>開場 3 分鐘品牌致詞</li>
-            <li>VIP 票 5 張</li>
-            <li>3 場小活動全參與</li>
-            <li>會後數據報告</li>
+        <div class="budget-card reveal">
+          <div class="budget-card__tag">A · HARDWARE</div>
+          <div class="budget-card__name">硬體</div>
+          <div class="budget-card__price">$105K – $135K</div>
+          <ul class="budget-card__list">
+            <li>場地（300 人灰棚）$50K</li>
+            <li>大型投影 + 投影幕</li>
+            <li>雷射 / 氛圍 / 舞台燈</li>
+            <li>音響 + 無線麥克風</li>
+            <li>桌椅 200+30</li>
+            <li>20 區道具佈置</li>
           </ul>
-          <div class="tier__footer">
-            <div class="tier__cp">
-              <strong>◉ 獨家權益</strong><br>
-              4 個月跨媒體曝光 · 200 人篩選受眾
-            </div>
+        </div>
+
+        <div class="budget-card reveal" data-delay="1">
+          <div class="budget-card__tag">B · CONTENT</div>
+          <div class="budget-card__name">內容製作</div>
+          <div class="budget-card__price">$102K – $150K</div>
+          <ul class="budget-card__list">
+            <li>主視覺 KV 設計</li>
+            <li>Podcast 6 集錄製後製</li>
+            <li>活動全天攝影</li>
+            <li>活動錄影 + 剪輯</li>
+            <li>背板設計與印刷</li>
+            <li>現場主持與工作人員</li>
+          </ul>
+        </div>
+
+        <div class="budget-card reveal" data-delay="2">
+          <div class="budget-card__tag">C · SPEAKERS</div>
+          <div class="budget-card__name">講者禮遇</div>
+          <div class="budget-card__price">$40K – $60K</div>
+          <ul class="budget-card__list">
+            <li>外地講者車馬費小紅包</li>
+            <li>講者紀念禮盒 12-15 份</li>
+            <li>慶功晚宴（核心 20-25 人）</li>
+            <li>專屬貴賓接待 / 茶點</li>
+            <li>講者宣傳素材拍攝</li>
+          </ul>
+        </div>
+
+        <div class="budget-card reveal" data-delay="3">
+          <div class="budget-card__tag">D · OPERATIONS</div>
+          <div class="budget-card__name">宣傳營運</div>
+          <div class="budget-card__price">$40K – $60K</div>
+          <ul class="budget-card__list">
+            <li>4 個月社群廣告投放</li>
+            <li>報名平台 / 售票系統</li>
+            <li>名牌 / 手冊 / 感謝小物</li>
+            <li>應變準備金</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="budget-total reveal">
+        <div class="budget-total__item">
+          <div class="budget-total__label">最低保守版</div>
+          <div class="budget-total__value">$290K</div>
+        </div>
+        <div class="budget-total__item budget-total__item--target">
+          <div class="budget-total__label">標準執行版</div>
+          <div class="budget-total__value">$400K</div>
+        </div>
+        <div class="budget-total__item">
+          <div class="budget-total__label">完整理想版</div>
+          <div class="budget-total__value">$500K+</div>
+        </div>
+      </div>
+
+      <div class="anchors reveal">
+        <div class="anchors__head">◉ SUGGESTED · 建議金額錨點</div>
+        <div class="anchors__list">
+          <div class="anchor">
+            <div class="anchor__price">$10,000</div>
+            <div class="anchor__note">起跳門檻</div>
+          </div>
+          <div class="anchor">
+            <div class="anchor__price">$30,000</div>
+            <div class="anchor__note">中堅夥伴</div>
+          </div>
+          <div class="anchor">
+            <div class="anchor__price">$50,000</div>
+            <div class="anchor__note">深度共創</div>
           </div>
         </div>
-
-        <!-- GOLD -->
-        <div class="tier tier--gold reveal" data-delay="1">
-          <div class="tier__tag">TIER · GOLD</div>
-          <div class="tier__name">金級贊助</div>
-          <div class="tier__price">$40,000 – $50,000</div>
-          <div class="tier__slots">◉ 限 2 名</div>
-          <ul class="tier__list">
-            <li>Logo <strong>次級版位</strong></li>
-            <li>指定 <strong>2 集 Podcast 口播</strong></li>
-            <li>Email 底部 Logo</li>
-            <li>大活動<strong>體驗攤位</strong>（5 攤之一）</li>
-            <li>獨立贊助感謝貼文</li>
-            <li>VIP 票 2 張</li>
-            <li>3 場小活動 Logo 露出</li>
-          </ul>
+        <div class="anchors__footer">
+          不分等級、不設上限——<span class="em">你決定要參與多少</span>。<br>
+          金額越高，團隊越能專注把事情做好。
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- SILVER -->
-        <div class="tier tier--silver reveal" data-delay="2">
-          <div class="tier__tag">TIER · SILVER</div>
-          <div class="tier__name">銀級贊助</div>
-          <div class="tier__price">$10,000 – 15,000</div>
-          <div class="tier__slots">◉ 3 – 5 名</div>
-          <ul class="tier__list">
-            <li>背板 + 投影 Logo</li>
-            <li>Email 合作夥伴欄 Logo</li>
-            <li>活動紀錄感謝名單</li>
-            <li>VIP 票 1 張</li>
-          </ul>
+  <div class="ornament">▗▘ ▙▚ ▛▝ ▗▘ ▙▚ ▛▝</div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     CH.07 — BENEFITS.log (共通權益)
+     ═══════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section__inner">
+      <div class="section__head reveal">
+        <div class="section__chapter">CH.07 _ BENEFITS.log</div>
+        <div class="section__meta">SHARED BENEFITS · ALL SPONSORS</div>
+      </div>
+
+      <h2 class="section__title reveal">
+        你能獲得什麼<br>
+        <span class="amber">不分大小，一視同仁</span>
+      </h2>
+      <p class="section__desc reveal">
+        每一位贊助夥伴皆享以下完整權益。沒有金級銀級之分、沒有冠名差異——
+        因為「一起把事做好」這件事本身，不該分階級。
+      </p>
+
+      <div class="benefits">
+        <div class="benefit reveal">
+          <div class="benefit__check">✓</div>
+          <div class="benefit__text"><strong>4 個月跨媒體持續曝光</strong><br>從 5 月暖場期到 9 月活動後長尾</div>
         </div>
-
-        <!-- GOODS -->
-        <div class="tier tier--goods reveal" data-delay="3">
-          <div class="tier__tag">TIER · GOODS</div>
-          <div class="tier__name">物資贊助</div>
-          <div class="tier__price">以物易物</div>
-          <div class="tier__slots">◉ 名額不限</div>
-          <ul class="tier__list">
-            <li>飲品 / 場地 / 印刷 / 設備</li>
-            <li>依物資價值對應部分權益</li>
-            <li>Logo 現場露出</li>
-            <li>社群貼文感謝</li>
-          </ul>
-          <div class="tier__footer">
-            <div class="tier__suitable">
-              <strong>適合：</strong><br>
-              場地方、飲品品牌、印刷廠、設備租賃商
-            </div>
-          </div>
+        <div class="benefit reveal" data-delay="1">
+          <div class="benefit__check">✓</div>
+          <div class="benefit__text"><strong>200+ 篩選決策者受眾接觸</strong><br>付費篩選的高意圖 AI 從業者</div>
         </div>
+        <div class="benefit reveal" data-delay="2">
+          <div class="benefit__check">✓</div>
+          <div class="benefit__text"><strong>Podcast 6 集 Logo + 口播感謝</strong><br>每一集都有你的品牌名字</div>
+        </div>
+        <div class="benefit reveal" data-delay="3">
+          <div class="benefit__check">✓</div>
+          <div class="benefit__text"><strong>現場完整品牌露出</strong><br>背板 / 投影 / 節目單同等規格</div>
+        </div>
+        <div class="benefit reveal" data-delay="4">
+          <div class="benefit__check">✓</div>
+          <div class="benefit__text"><strong>社群獨立感謝貼文</strong><br>不是 Logo 牆、不是被縮小的圖標</div>
+        </div>
+        <div class="benefit reveal" data-delay="5">
+          <div class="benefit__check">✓</div>
+          <div class="benefit__text"><strong>會後數據報告 + 內容素材</strong><br>含二次利用權，可 Re-purpose 進你的渠道</div>
+        </div>
+        <div class="benefit reveal" data-delay="6">
+          <div class="benefit__check">✓</div>
+          <div class="benefit__text"><strong>下屆優先合作權</strong><br>第三屆簽約名單，從這裡開始排</div>
+        </div>
+      </div>
 
+      <div class="benefits-note reveal">
+        不販售階梯、不冠名差異——<br>
+        最好的贊助關係是 <span class="em">「我們一起讓這件事發生」</span>。
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-     CH.07 — PROTOCOL.log (合作形式)
+     CH.08 — PROTOCOL.log (合作形式)
      ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="section__inner">
       <div class="section__head reveal">
-        <div class="section__chapter">CH.07 _ PROTOCOL.log</div>
+        <div class="section__chapter">CH.08 _ PROTOCOL.log</div>
         <div class="section__meta">COLLABORATION FORMATS · NEGOTIABLE</div>
       </div>
 
@@ -3271,7 +3450,7 @@
         <div class="protocol-card reveal">
           <div class="protocol-card__num">PROTO · 01</div>
           <div class="protocol-card__title">現金贊助</div>
-          <div class="protocol-card__desc">依方案執行對應權益。</div>
+          <div class="protocol-card__desc">彈性金額，共通權益一致執行。</div>
         </div>
         <div class="protocol-card reveal" data-delay="1">
           <div class="protocol-card__num">PROTO · 02</div>
@@ -3307,12 +3486,12 @@
   <div class="ornament">▗▘ ▙▚ ▛▝ ▗▘ ▙▚ ▛▝</div>
 
   <!-- ═══════════════════════════════════════════════════════════
-     CH.08 — WHY.log (為什麼選我們)
+     CH.09 — WHY.log (為什麼選我們)
      ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="section__inner">
       <div class="section__head reveal">
-        <div class="section__chapter">CH.08 _ WHY.log</div>
+        <div class="section__chapter">CH.09 _ WHY.log</div>
         <div class="section__meta">COMPARATIVE ANALYSIS</div>
       </div>
 
@@ -3370,12 +3549,12 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-     CH.09 — CREW.log (核心團隊)
+     CH.10 — CREW.log (核心團隊)
      ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="section__inner">
       <div class="section__head reveal">
-        <div class="section__chapter">CH.09 _ CREW.log</div>
+        <div class="section__chapter">CH.10 _ CREW.log</div>
         <div class="section__meta">EXECUTION TEAM · 4-CORE</div>
       </div>
 
