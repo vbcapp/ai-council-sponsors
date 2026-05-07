@@ -1630,6 +1630,451 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
+     CH.06 — FLOOR-PLAN VENUE BLUEPRINT (scoped under .floor-plan)
+     ═══════════════════════════════════════════════════════════ */
+    .floor-plan {
+      margin: 0 0 56px;
+    }
+
+    .floor-plan__intro {
+      padding: 24px 28px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      margin-bottom: 18px;
+      font-size: 14.5px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .floor-plan__intro b {
+      color: var(--amber-bright);
+      font-weight: 600;
+    }
+
+    .floor-plan__intro__meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      margin-top: 16px;
+      border-top: 1px dashed var(--border);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--text-dim);
+    }
+
+    .floor-plan__intro__meta .num {
+      color: var(--amber);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .floor-plan .plan-wrapper {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: auto;
+    }
+
+    .floor-plan .plan-wrapper::before {
+      content: "FLOOR PLAN · 200 PAX · 灰棚 42.66 × 16.5 m · v3";
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      opacity: 0.7;
+    }
+
+    .floor-plan .plan-svg {
+      width: 100%;
+      height: auto;
+      min-width: 980px;
+      display: block;
+    }
+
+    .floor-plan .plan-help {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* TOGGLE — details/summary */
+    .floor-toggle {
+      border: 1px solid var(--border);
+      background: var(--bg-panel);
+      margin-bottom: 18px;
+    }
+
+    .floor-toggle > summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 24px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      user-select: none;
+    }
+
+    .floor-toggle > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .floor-toggle > summary .label::before {
+      content: "▸ ";
+      color: var(--amber);
+    }
+
+    .floor-toggle > summary .hint {
+      color: var(--text-muted);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+    }
+
+    .floor-toggle[open] > summary .label::before {
+      content: "▾ ";
+    }
+
+    .floor-toggle[open] > summary .hint::before {
+      content: "收起 ";
+    }
+
+    .floor-toggle:not([open]) > summary .hint::before {
+      content: "展開 ";
+    }
+
+    .floor-toggle > summary:hover {
+      background: var(--bg-elevated);
+    }
+
+    .floor-toggle__body {
+      padding: 4px 24px 24px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .floor-plan .fp-section {
+      padding: 24px 0 8px;
+    }
+
+    .floor-plan .fp-section + .fp-section {
+      border-top: 1px dashed var(--border);
+      margin-top: 8px;
+    }
+
+    .floor-plan .section-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--amber);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .floor-plan .section-title::before {
+      content: "▸";
+      color: var(--amber);
+    }
+
+    .floor-plan .section-h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(20px, 2.6vw, 26px);
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .floor-plan .section-desc {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+      max-width: 820px;
+      line-height: 1.75;
+    }
+
+    .floor-plan .section-desc b {
+      color: var(--amber-bright);
+      font-weight: 600;
+    }
+
+    .floor-plan .legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 8px;
+      padding: 20px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+    }
+
+    .floor-plan .legend__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .floor-plan .legend__swatch {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border-bright);
+      flex-shrink: 0;
+    }
+
+    .floor-plan .zone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .floor-plan .zone-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      padding: 16px 14px;
+      transition: all 0.2s;
+    }
+
+    .floor-plan .zone-card:hover {
+      border-color: var(--amber);
+      transform: translateY(-2px);
+    }
+
+    .floor-plan .zone-card__id {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+
+    .floor-plan .zone-card__title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .floor-plan .zone-card__sub {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    .floor-plan .zone-card.upper {
+      border-left: 3px solid var(--rust);
+    }
+
+    .floor-plan .zone-card.lower {
+      border-left: 3px solid var(--signal);
+    }
+
+    .floor-plan .zone-card.vendor {
+      border-left: 3px solid var(--amber);
+    }
+
+    .floor-plan .zone-card.match {
+      border-left: 3px solid var(--amber-bright);
+      background: linear-gradient(135deg, rgba(212, 134, 26, 0.08), rgba(178, 68, 32, 0.04));
+    }
+
+    .floor-plan .zone-card.supply {
+      border-left: 3px solid var(--signal-bright);
+      background: linear-gradient(135deg, rgba(107, 196, 180, 0.07), rgba(74, 149, 136, 0.03));
+    }
+
+    .floor-plan .right-block {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-bright);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .floor-plan .right-block__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .floor-plan .right-block__item {
+      padding: 14px 16px;
+      background: var(--bg-elevated);
+      border-left: 2px solid var(--amber);
+    }
+
+    .floor-plan .right-block__item h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+
+    .floor-plan .right-block__item p {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .floor-plan .right-block__item p b {
+      color: var(--amber-bright);
+    }
+
+    .floor-plan .fp-timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 14px 0 16px;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .floor-plan .fp-timeline-grid__cell {
+      background: var(--bg-panel);
+      padding: 14px 12px;
+    }
+
+    .floor-plan .fp-timeline-grid__cell .t {
+      color: var(--amber);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      margin-bottom: 4px;
+      font-size: 10px;
+    }
+
+    .floor-plan .fp-timeline-grid__cell .l {
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .floor-plan .fp-timeline-grid__cell .d {
+      color: var(--text-dim);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .floor-plan .fp-timeline-heading {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 720px) {
+      .floor-plan .fp-timeline-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .floor-plan .capacity__viewpoint {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      margin: 20px 0 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .floor-plan .capacity__viewpoint::before {
+      content: "▸";
+      color: var(--amber);
+    }
+
+    .floor-plan .capacity {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .floor-plan .capacity__cell {
+      background: var(--bg-panel);
+      padding: 22px 20px;
+    }
+
+    .floor-plan .capacity__cell.amber {
+      background: var(--amber-soft);
+    }
+
+    .floor-plan .capacity__label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .floor-plan .capacity__cell.amber .capacity__label {
+      color: var(--amber);
+    }
+
+    .floor-plan .capacity__num {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .floor-plan .capacity__detail {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .floor-plan__cta {
+      text-align: center;
+      padding: 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    .floor-plan__cta a {
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--amber);
+      padding-bottom: 1px;
+    }
+
+    .floor-plan__cta a:hover {
+      color: var(--amber-bright);
+      border-color: var(--amber-bright);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
      CH.06 — BUDGET (cost transparency)
      ═══════════════════════════════════════════════════════════ */
     .budget-intro {
@@ -3306,15 +3751,650 @@
     <div class="section__inner">
       <div class="section__head reveal">
         <div class="section__chapter">CH.06 _ BUDGET.log</div>
-        <div class="section__meta">COST TRANSPARENCY · NO TIERS</div>
+        <div class="section__meta">VENUE BLUEPRINT · COST TRANSPARENCY</div>
       </div>
 
       <h2 class="section__title reveal">
         為什麼需要<span class="amber">你的贊助</span>
       </h2>
       <p class="section__desc reveal">
-        把這場活動的成本攤開——讓你知道這份贊助會去到哪裡。
+        把這場活動的<span class="amber">規模與成本一起攤開</span>——
+        先讓你看見現場長什麼樣子，再把每一塊預算去到哪裡，一一交代清楚。
       </p>
+
+      <div class="floor-plan reveal">
+        <div class="floor-plan__intro">
+          場地真實尺寸 <b>42.66 × 16.5 米</b>（灰棚 200 PAX）。
+          上半 = <b>感性區 · 七宗罪 × AI 焦慮</b>、下半 = <b>理性區 · 職業 × AI 實戰</b>，
+          最右側整面牆是 <b>投影幕＝打卡牆＝開幕舞台</b>三合一。
+          <b>20 個議題、5 個體驗型廠商攤位、1 個中央補給島、1 個媒合型休息討論區</b>——
+          這就是你贊助這場活動，會看到的現場。
+          <div class="floor-plan__intro__meta">
+            <span><span class="num">200</span> PAX</span>
+            <span><span class="num">20</span> 議題</span>
+            <span><span class="num">~50</span> 小桌</span>
+            <span><span class="num">5</span> 體驗型廠商</span>
+            <span><span class="num">42.66×16.5</span> m</span>
+            <span><span class="num">v3</span> 部署版本</span>
+          </div>
+        </div>
+
+        <div class="plan-wrapper">
+          <svg class="plan-svg" viewBox="0 0 1500 580" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="fp-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2b2520" stroke-width="0.5" opacity="0.4"/>
+              </pattern>
+              <marker id="fp-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L0,6 L9,3 z" fill="#d4861a"/>
+              </marker>
+              <linearGradient id="fp-screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#d4861a" stop-opacity="0.45"/>
+                <stop offset="50%" stop-color="#f2a93a" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#b24420" stop-opacity="0.40"/>
+              </linearGradient>
+            </defs>
+
+            <!-- VENUE BOUNDARY -->
+            <rect x="20" y="20" width="1460" height="540" fill="#0b0907" stroke="#3d342b" stroke-width="2"/>
+            <rect x="20" y="20" width="1460" height="540" fill="url(#fp-grid)"/>
+
+            <!-- VENUE DIMENSIONS -->
+            <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#5e5447" letter-spacing="0.18em">
+              <text x="42" y="14">SCALE 1:120 · CEILING 4 m</text>
+              <text x="750" y="14" text-anchor="middle">←─────────── 42.66 m ───────────→</text>
+              <text x="14" y="290" text-anchor="middle" transform="rotate(-90 14 290)">←──── 16.5 m ────→</text>
+            </g>
+
+            <!-- ============ LEFT UTILITY ZONE ============ -->
+            <rect x="30" y="30" width="130" height="130" fill="#1a1713" stroke="#5e5447" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="95" y="60" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#978b7a" letter-spacing="0.2em">UTILITY</text>
+            <text x="95" y="88" text-anchor="middle" font-family="Noto Sans TC" font-size="11" fill="#ebe4d6">配電室 · 樓梯</text>
+            <text x="95" y="106" text-anchor="middle" font-family="Noto Sans TC" font-size="11" fill="#ebe4d6">工作後台</text>
+            <text x="95" y="138" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#5e5447">[ 不規則卡角 ]</text>
+
+            <rect x="30" y="190" width="130" height="180" fill="#221d17" stroke="#978b7a" stroke-width="1.5"/>
+            <text x="95" y="218" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#d4861a" letter-spacing="0.2em" font-weight="700">REGISTRATION</text>
+            <text x="95" y="248" text-anchor="middle" font-family="Noto Serif TC" font-size="16" fill="#f5efe3" font-weight="700">報到 · 名牌</text>
+            <text x="95" y="272" text-anchor="middle" font-family="Noto Serif TC" font-size="14" fill="#ebe4d6">寄物</text>
+            <text x="95" y="320" text-anchor="middle" font-family="Noto Sans TC" font-size="9.5" fill="#978b7a">+ 工作人員</text>
+            <text x="95" y="335" text-anchor="middle" font-family="Noto Sans TC" font-size="9.5" fill="#978b7a">站立區</text>
+
+            <g>
+              <path d="M -10 290 L 25 290" stroke="#d4861a" stroke-width="2" marker-end="url(#fp-arrow)"/>
+              <text x="-2" y="278" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" letter-spacing="0.18em" font-weight="700">▶ ENTRY</text>
+              <text x="-2" y="308" font-family="Noto Sans TC" font-size="11" fill="#d4861a">入口</text>
+            </g>
+
+            <path d="M 165 290 L 200 290" stroke="#d4861a" stroke-width="1.4" marker-end="url(#fp-arrow)" stroke-dasharray="5 4" opacity="0.7"/>
+
+            <!-- ============ UPPER HALF: 感性區 ============ -->
+            <rect x="180" y="30" width="1090" height="240" fill="rgba(178, 68, 32, 0.04)" stroke="#3d342b" stroke-width="1" stroke-dasharray="2 4"/>
+
+            <text x="200" y="55" font-family="IBM Plex Mono" font-size="11" fill="#b24420" letter-spacing="0.3em" font-weight="600">UPPER · SOFT MIND</text>
+            <text x="200" y="78" font-family="Noto Serif TC" font-size="18" fill="#f5efe3" font-weight="700" letter-spacing="0.05em">感性區 · 七宗罪 × AI 焦慮</text>
+            <text x="200" y="96" font-family="IBM Plex Mono" font-size="9.5" fill="#5e5447" letter-spacing="0.16em">10 議題 × 2~3 小桌 × 3~5 人  ／  brick offset</text>
+
+            <!-- Upper Outer Row: V01 T01 T02 V02 T03 T04 V03 (cy=140) -->
+            <g>
+              <rect x="208" y="115" width="80" height="50" fill="rgba(212, 134, 26, 0.22)" stroke="#d4861a" stroke-width="1.5"/>
+              <text x="248" y="138" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" font-weight="700" letter-spacing="0.15em">V01</text>
+              <text x="248" y="153" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#ebe4d6">大模型試玩</text>
+            </g>
+            <g>
+              <rect x="350" y="115" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="405" y="129" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T01</text>
+              <text x="405" y="143" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">傲慢</text>
+              <circle cx="383" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="405" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="427" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="507" y="115" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="562" y="129" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T02</text>
+              <text x="562" y="143" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">嫉妒</text>
+              <circle cx="540" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="562" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="584" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="679" y="115" width="80" height="50" fill="rgba(212, 134, 26, 0.22)" stroke="#d4861a" stroke-width="1.5"/>
+              <text x="719" y="138" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" font-weight="700" letter-spacing="0.15em">V02</text>
+              <text x="719" y="153" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#ebe4d6">Agent SaaS</text>
+            </g>
+            <g>
+              <rect x="821" y="115" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="876" y="129" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T03</text>
+              <text x="876" y="143" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">憤怒</text>
+              <circle cx="854" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="876" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="898" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="978" y="115" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="1033" y="129" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T04</text>
+              <text x="1033" y="143" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">懶惰</text>
+              <circle cx="1011" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="1033" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="1055" cy="156" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="1150" y="115" width="80" height="50" fill="rgba(212, 134, 26, 0.22)" stroke="#d4861a" stroke-width="1.5"/>
+              <text x="1190" y="138" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" font-weight="700" letter-spacing="0.15em">V03</text>
+              <text x="1190" y="153" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#ebe4d6">圖像/影片</text>
+            </g>
+
+            <!-- Upper Inner Row: T05–T10 (cy=215) -->
+            <g>
+              <rect x="272" y="190" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="327" y="204" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T05</text>
+              <text x="327" y="218" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">貪婪</text>
+              <circle cx="305" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="327" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="349" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="429" y="190" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="484" y="204" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T06</text>
+              <text x="484" y="218" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">暴食</text>
+              <circle cx="462" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="484" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="506" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="586" y="190" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="641" y="204" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T07</text>
+              <text x="641" y="218" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">色慾</text>
+              <circle cx="619" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="641" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="663" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="743" y="190" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="798" y="204" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T08</text>
+              <text x="798" y="218" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">焦慮</text>
+              <circle cx="776" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="798" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="820" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="900" y="190" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="955" y="204" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T09</text>
+              <text x="955" y="218" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">孤獨</text>
+              <circle cx="933" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="955" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="977" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="1057" y="190" width="110" height="50" fill="rgba(178, 68, 32, 0.18)" stroke="#b24420" stroke-width="1.2"/>
+              <text x="1112" y="204" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#b24420" font-weight="700">T10</text>
+              <text x="1112" y="218" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">死亡</text>
+              <circle cx="1090" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="1112" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+              <circle cx="1134" cy="231" r="3.2" fill="rgba(178,68,32,0.5)" stroke="#b24420" stroke-width="0.7"/>
+            </g>
+
+            <!-- ============ AISLE: 中軸走廊 (拆兩段) ============ -->
+            <line x1="180" y1="290" x2="615" y2="290" stroke="#d4861a" stroke-width="0.8" stroke-dasharray="3 6" opacity="0.55"/>
+            <line x1="825" y1="290" x2="1265" y2="290" stroke="#d4861a" stroke-width="0.8" stroke-dasharray="3 6" opacity="0.55"/>
+            <text x="395" y="287" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#5e5447" letter-spacing="0.3em">─── 中軸 ───</text>
+            <text x="1045" y="287" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#5e5447" letter-spacing="0.3em">─── 中軸 ───</text>
+
+            <!-- ============ CENTRAL SUPPLY ISLAND: 酒水 + 點心 ============ -->
+            <g>
+              <rect x="620" y="255" width="200" height="70" fill="rgba(212, 134, 26, 0.13)" stroke="#d4861a" stroke-width="1.5"/>
+              <rect x="623" y="258" width="194" height="64" fill="none" stroke="#d4861a" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.7"/>
+              <text x="720" y="272" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#d4861a" letter-spacing="0.28em" font-weight="700">CENTRAL SUPPLY ISLAND</text>
+              <line x1="720" y1="280" x2="720" y2="318" stroke="#d4861a" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.5"/>
+              <text x="670" y="298" text-anchor="middle" font-family="Noto Serif TC" font-size="13" fill="#f5efe3" font-weight="700">酒水區</text>
+              <text x="770" y="298" text-anchor="middle" font-family="Noto Serif TC" font-size="13" fill="#f5efe3" font-weight="700">點心區</text>
+              <text x="670" y="314" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#978b7a">調酒 / 軟飲</text>
+              <text x="770" y="314" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#978b7a">輕食 / 甜點</text>
+            </g>
+
+            <!-- ============ LOWER HALF: 理性區 ============ -->
+            <rect x="180" y="310" width="1090" height="240" fill="rgba(74, 149, 136, 0.04)" stroke="#3d342b" stroke-width="1" stroke-dasharray="2 4"/>
+
+            <text x="200" y="335" font-family="IBM Plex Mono" font-size="11" fill="#4a9588" letter-spacing="0.3em" font-weight="600">LOWER · HARD CRAFT</text>
+            <text x="200" y="358" font-family="Noto Serif TC" font-size="18" fill="#f5efe3" font-weight="700" letter-spacing="0.05em">理性區 · 職業 × AI 實戰</text>
+            <text x="200" y="376" font-family="IBM Plex Mono" font-size="9.5" fill="#5e5447" letter-spacing="0.16em">10 議題 × 2~3 小桌 × 3~5 人  ／  brick offset</text>
+
+            <!-- Lower Inner Row: T11–T16 (cy=410) -->
+            <g>
+              <rect x="272" y="385" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="327" y="399" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T11</text>
+              <text x="327" y="413" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">業務</text>
+              <circle cx="305" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="327" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="349" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="429" y="385" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="484" y="399" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T12</text>
+              <text x="484" y="413" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">設計</text>
+              <circle cx="462" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="484" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="506" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="586" y="385" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="641" y="399" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T13</text>
+              <text x="641" y="413" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">工程</text>
+              <circle cx="619" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="641" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="663" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="743" y="385" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="798" y="399" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T14</text>
+              <text x="798" y="413" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">PM</text>
+              <circle cx="776" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="798" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="820" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="900" y="385" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="955" y="399" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T15</text>
+              <text x="955" y="413" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">行銷</text>
+              <circle cx="933" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="955" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="977" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="1057" y="385" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="1112" y="399" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T16</text>
+              <text x="1112" y="413" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">顧問</text>
+              <circle cx="1090" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="1112" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="1134" cy="426" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+
+            <!-- Lower Outer Row: V04 T17 T18 V05 T19 T20 休息討論 (cy=485) -->
+            <g>
+              <rect x="208" y="460" width="80" height="50" fill="rgba(212, 134, 26, 0.22)" stroke="#d4861a" stroke-width="1.5"/>
+              <text x="248" y="483" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" font-weight="700" letter-spacing="0.15em">V04</text>
+              <text x="248" y="498" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#ebe4d6">語音/Podcast</text>
+            </g>
+            <g>
+              <rect x="350" y="460" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="405" y="474" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T17</text>
+              <text x="405" y="488" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">教育</text>
+              <circle cx="383" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="405" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="427" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="507" y="460" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="562" y="474" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T18</text>
+              <text x="562" y="488" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">醫療</text>
+              <circle cx="540" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="562" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="584" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="679" y="460" width="80" height="50" fill="rgba(212, 134, 26, 0.22)" stroke="#d4861a" stroke-width="1.5"/>
+              <text x="719" y="483" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" font-weight="700" letter-spacing="0.15em">V05</text>
+              <text x="719" y="498" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#ebe4d6">開發者工具</text>
+            </g>
+            <g>
+              <rect x="821" y="460" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="876" y="474" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T19</text>
+              <text x="876" y="488" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">法律</text>
+              <circle cx="854" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="876" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="898" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <g>
+              <rect x="978" y="460" width="110" height="50" fill="rgba(74, 149, 136, 0.18)" stroke="#4a9588" stroke-width="1.2"/>
+              <text x="1033" y="474" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a9588" font-weight="700">T20</text>
+              <text x="1033" y="488" text-anchor="middle" font-family="Noto Sans TC" font-size="10" fill="#ebe4d6">創業</text>
+              <circle cx="1011" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="1033" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+              <circle cx="1055" cy="501" r="3.2" fill="rgba(74,149,136,0.5)" stroke="#4a9588" stroke-width="0.7"/>
+            </g>
+            <!-- 休息討論區（可做工商媒合）-->
+            <g>
+              <rect x="1148" y="455" width="84" height="60" fill="rgba(212, 134, 26, 0.32)" stroke="#f2a93a" stroke-width="2"/>
+              <rect x="1151" y="458" width="78" height="54" fill="none" stroke="#f2a93a" stroke-width="0.5" stroke-dasharray="2 2"/>
+              <text x="1190" y="471" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" fill="#f2a93a" font-weight="700" letter-spacing="0.18em">⚜ LOUNGE</text>
+              <text x="1190" y="485" text-anchor="middle" font-family="Noto Sans TC" font-size="9.5" fill="#f5efe3" font-weight="700">休息討論區</text>
+              <text x="1190" y="497" text-anchor="middle" font-family="Noto Sans TC" font-size="7.5" fill="#ebe4d6">3 桌 × 3 人</text>
+              <text x="1190" y="508" text-anchor="middle" font-family="Noto Sans TC" font-size="7.5" fill="#ebe4d6">(可做工商媒合)</text>
+            </g>
+
+            <!-- ============ RIGHT BLOCK: 立柱 + 紅毯 + 退距 + 舞台 + 投影幕 ============ -->
+            <rect x="1280" y="30" width="190" height="520" fill="rgba(212, 134, 26, 0.04)" stroke="#3d342b" stroke-width="1" stroke-dasharray="2 4"/>
+
+            <text x="1375" y="55" text-anchor="middle" font-family="IBM Plex Mono" font-size="9.5" fill="#d4861a" letter-spacing="0.28em" font-weight="600">CEREMONY · 終點儀式區</text>
+
+            <g>
+              <rect x="1300" y="70" width="60" height="60" fill="rgba(212, 134, 26, 0.18)" stroke="#d4861a" stroke-width="1.2"/>
+              <text x="1330" y="98" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" font-weight="700">⚜ A</text>
+              <text x="1330" y="115" text-anchor="middle" font-family="Noto Sans TC" font-size="8.5" fill="#978b7a">立柱燈箱</text>
+            </g>
+            <text x="1330" y="148" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#5e5447">"末日議會 II" + LOGO</text>
+
+            <rect x="1280" y="170" width="120" height="240" fill="rgba(212, 134, 26, 0.05)" stroke="#3d342b" stroke-width="0.5" stroke-dasharray="3 3"/>
+            <text x="1340" y="194" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#978b7a" letter-spacing="0.2em">PHOTO BUFFER</text>
+            <text x="1340" y="212" text-anchor="middle" font-family="Noto Sans TC" font-size="11" fill="#ebe4d6">退距區</text>
+            <text x="1340" y="227" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#978b7a">~3m / 觀眾站位</text>
+
+            <rect x="1265" y="278" width="135" height="24" fill="#b24420" opacity="0.5"/>
+            <text x="1335" y="294" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" fill="#f5efe3" letter-spacing="0.2em" font-weight="600">▓ 紅毯 RED CARPET ▓</text>
+
+            <text x="1340" y="350" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" letter-spacing="0.2em" font-weight="700">▶▶▶</text>
+            <text x="1340" y="368" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#978b7a">觀眾朝右</text>
+            <text x="1340" y="382" text-anchor="middle" font-family="Noto Sans TC" font-size="9" fill="#978b7a">(開場面向舞台)</text>
+
+            <g>
+              <rect x="1408" y="180" width="42" height="220" fill="rgba(212, 134, 26, 0.24)" stroke="#f2a93a" stroke-width="1.8"/>
+              <text x="1429" y="210" text-anchor="middle" font-family="IBM Plex Mono" font-size="9.5" fill="#d4861a" letter-spacing="0.2em" font-weight="700">STAGE</text>
+              <text x="1429" y="232" text-anchor="middle" font-family="Noto Serif TC" font-size="13" fill="#f5efe3" font-weight="700">舞台</text>
+              <text x="1429" y="252" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" fill="#f2a93a" font-weight="700">◀</text>
+              <text x="1429" y="270" text-anchor="middle" font-family="Noto Sans TC" font-size="8.5" fill="#ebe4d6">朝左</text>
+              <text x="1429" y="295" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#f2a93a" font-weight="700">◣麥</text>
+              <text x="1429" y="332" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#978b7a">寬 6m</text>
+              <text x="1429" y="346" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#978b7a">深 1.2m</text>
+              <text x="1429" y="360" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#978b7a">高 30cm</text>
+            </g>
+
+            <g>
+              <rect x="1455" y="170" width="15" height="240" fill="url(#fp-screenGrad)" stroke="#f2a93a" stroke-width="1.8"/>
+              <g transform="translate(1463, 290) rotate(-90)" text-anchor="middle">
+                <text y="-2" font-family="IBM Plex Mono" font-size="10" fill="#f2a93a" font-weight="700" letter-spacing="0.3em">SCREEN ＝ PHOTO WALL</text>
+                <text y="12" font-family="Noto Serif TC" font-size="11" fill="#f5efe3" font-weight="700">投影幕＝打卡牆</text>
+              </g>
+            </g>
+
+            <g>
+              <rect x="1300" y="450" width="60" height="60" fill="rgba(212, 134, 26, 0.18)" stroke="#d4861a" stroke-width="1.2"/>
+              <text x="1330" y="478" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#d4861a" font-weight="700">⚜ B</text>
+              <text x="1330" y="495" text-anchor="middle" font-family="Noto Sans TC" font-size="8.5" fill="#978b7a">立柱燈箱</text>
+            </g>
+            <text x="1330" y="528" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#5e5447">"七宗罪" 文字 + 贊助 LOGO</text>
+
+            <path d="M 1265 290 L 1395 290" stroke="#d4861a" stroke-width="1.4" marker-end="url(#fp-arrow)" stroke-dasharray="5 4" opacity="0.65" fill="none"/>
+
+            <!-- ============ BOTTOM CAPTION ============ -->
+            <text x="750" y="572" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#5e5447" letter-spacing="0.22em">
+              ENTRY ▶ REGISTRATION ▶ 議題區 (上下分流) ▶ 中央補給 ▶ 紅毯 ▶ STAGE / SCREEN
+            </text>
+
+          </svg>
+        </div>
+        <div class="plan-help">// 比例 1:120　|　可橫向捲動　|　每議題框內 3 小圓 = 該議題下的 2~3 張小桌 schematic</div>
+
+        <details class="floor-toggle">
+          <summary>
+            <span class="label">展開部署細節（圖例 · 20 議題清單 · 廠商 · 舞台 · 容量）</span>
+            <span class="hint"></span>
+          </summary>
+          <div class="floor-toggle__body">
+
+            <!-- LEGEND -->
+            <div class="legend">
+              <div class="legend__item">
+                <span class="legend__swatch" style="background: rgba(178, 68, 32, 0.18); border-color: #b24420;"></span>
+                感性議題框（七宗罪 / 內含 2~3 小桌）
+              </div>
+              <div class="legend__item">
+                <span class="legend__swatch" style="background: rgba(74, 149, 136, 0.18); border-color: #4a9588;"></span>
+                理性議題框（職業×AI / 內含 2~3 小桌）
+              </div>
+              <div class="legend__item">
+                <span class="legend__swatch" style="background: rgba(212, 134, 26, 0.22); border-color: #d4861a;"></span>
+                體驗型廠商攤位（暫定主題）
+              </div>
+              <div class="legend__item">
+                <span class="legend__swatch" style="background: rgba(212, 134, 26, 0.13); border: 1.5px solid #d4861a;"></span>
+                中央補給島（酒水＋點心）
+              </div>
+              <div class="legend__item">
+                <span class="legend__swatch" style="background: rgba(212, 134, 26, 0.32); border: 2px solid #f2a93a;"></span>
+                休息討論區（可做工商媒合）
+              </div>
+              <div class="legend__item">
+                <span class="legend__swatch" style="background: linear-gradient(180deg, #d4861a 0%, #b24420 100%); opacity: 0.8;"></span>
+                投影幕＝打卡牆＝舞台
+              </div>
+              <div class="legend__item">
+                <span class="legend__swatch" style="background: transparent; border: 1px dashed #d4861a;"></span>
+                人流動線
+              </div>
+            </div>
+
+            <!-- ============ SECTION 02: UPPER ZONE ============ -->
+            <div class="fp-section">
+              <div class="section-title">SECTION 02 / UPPER ZONE</div>
+              <h3 class="section-h2">上半部 · 感性區 — 七宗罪 × AI 內心戰</h3>
+              <p class="section-desc">
+                延續首場驗證的「七宗罪」分類，擴充至 10 議題。
+                <b>外排（貼上牆）</b>放 V01–V03 三個廠商錨點 + 4 議題（T01–T04）；
+                <b>內排（靠中軸）</b>放 6 議題（T05–T10）。兩排錯位，視線通透、走道感清晰。
+                <b>每議題實體配置 2~3 張 3-5 人小桌</b>，視熱度自然調整：熱門議題開到 3 桌，冷門議題 2 桌甚至 1 桌都 OK。
+                平面圖中每框內的 3 小圓代表理想最大配置。
+              </p>
+              <div class="zone-grid">
+                <div class="zone-card upper"><div class="zone-card__id">T01 · PRIDE · 外排</div><div class="zone-card__title">傲慢</div><div class="zone-card__sub">用 AI 後我變成 god 還是廢物？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T02 · ENVY · 外排</div><div class="zone-card__title">嫉妒</div><div class="zone-card__sub">別人 AI 都用得比我好，怎辦？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T03 · WRATH · 外排</div><div class="zone-card__title">憤怒</div><div class="zone-card__sub">AI 取代我的工作，我該恨誰？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T04 · SLOTH · 外排</div><div class="zone-card__title">懶惰</div><div class="zone-card__sub">用 AI 就是想偷懶，有錯嗎？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T05 · GREED · 內排</div><div class="zone-card__title">貪婪</div><div class="zone-card__sub">用 AI 賺錢的天花板在哪？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T06 · GLUTTONY · 內排</div><div class="zone-card__title">暴食</div><div class="zone-card__sub">每月訂閱 10 個 AI 工具是病嗎？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T07 · LUST · 內排</div><div class="zone-card__title">色慾</div><div class="zone-card__sub">AI 伴侶 / virtual companion 是出路？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T08 · ANXIETY · 內排</div><div class="zone-card__title">焦慮</div><div class="zone-card__sub">我的小孩還需要學什麼？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T09 · LONELINESS · 內排</div><div class="zone-card__title">孤獨</div><div class="zone-card__sub">AI 是朋友，還是放大孤獨？</div></div>
+                <div class="zone-card upper"><div class="zone-card__id">T10 · MORTALITY · 內排</div><div class="zone-card__title">死亡</div><div class="zone-card__sub">AI 復活已逝者，你願意嗎？</div></div>
+              </div>
+            </div>
+
+            <!-- ============ SECTION 03: LOWER ZONE ============ -->
+            <div class="fp-section">
+              <div class="section-title">SECTION 03 / LOWER ZONE</div>
+              <h3 class="section-h2">下半部 · 理性區 — 職業 × AI 實戰</h3>
+              <p class="section-desc">
+                按職業／行業別分圈，每圈聚焦該角色「如何結合 AI 創造差異化」。
+                <b>內排（靠中軸）</b>放 6 議題（T11–T16）；
+                <b>外排（貼下牆）</b>放 V04–V05 兩廠商 + 4 議題（T17–T20）+ 最右側的 <b>休息討論區</b>。
+                <b>每議題同樣配置 2~3 張小桌</b>，比感性區更偏實務交流，是廠商攤位與 B 端配對的天然轉場前哨。
+              </p>
+              <div class="zone-grid">
+                <div class="zone-card lower"><div class="zone-card__id">T11 · SALES · 內排</div><div class="zone-card__title">業務</div><div class="zone-card__sub">B2B AI 銷售下一個 5 年的長相</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T12 · DESIGN · 內排</div><div class="zone-card__title">設計</div><div class="zone-card__sub">AI 替代了什麼，留下了什麼</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T13 · ENG · 內排</div><div class="zone-card__title">工程</div><div class="zone-card__sub">vibe coding 讓我變強還是變廢</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T14 · PM · 內排</div><div class="zone-card__title">PM</div><div class="zone-card__sub">AI PM 的差異化在哪</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T15 · MKT · 內排</div><div class="zone-card__title">行銷</div><div class="zone-card__sub">內容紅海，AI 怎麼讓你出圈</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T16 · CONSULT · 內排</div><div class="zone-card__title">顧問</div><div class="zone-card__sub">AI 顧問的可信度怎麼建</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T17 · EDU · 外排</div><div class="zone-card__title">教育</div><div class="zone-card__sub">AI 進教室，學生還要老師嗎</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T18 · MED · 外排</div><div class="zone-card__title">醫療</div><div class="zone-card__sub">AI 診斷能取代第二意見嗎</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T19 · LAW · 外排</div><div class="zone-card__title">法律</div><div class="zone-card__sub">AI 法務的責任邊界</div></div>
+                <div class="zone-card lower"><div class="zone-card__id">T20 · STARTUP · 外排</div><div class="zone-card__title">創業</div><div class="zone-card__sub">one-person AI startup 的天花板</div></div>
+              </div>
+            </div>
+
+            <!-- ============ SECTION 04: VENDORS + 補給 + 休息 ============ -->
+            <div class="fp-section">
+              <div class="section-title">SECTION 04 / FIREPOWER · SUPPLY · LOUNGE</div>
+              <h3 class="section-h2">廠商火力 + 中央補給 + 休息討論區</h3>
+              <p class="section-desc">
+                議題區是 <b>主場</b>（穩態 95% 的人在這），這個 section 寫的是「議題以外的流動骨架」三件事：
+                <b>① 廠商攤位</b>—— 體驗型，同時 3~5 人站著看／玩，旁邊各有議題桌相伴 →
+                <b>② 中央補給島</b>—— 酒水＋點心，上下兩區共用，換場時 3 分鐘來回的小停留 →
+                <b>③ 休息討論區</b>—— 想短暫坐下深聊／找人媒合都歸它。
+              </p>
+              <div class="zone-grid">
+                <div class="zone-card vendor"><div class="zone-card__id">V01 · 上半外排（左）· 暫定</div><div class="zone-card__title">大模型試玩台</div><div class="zone-card__sub">同一個 prompt 餵 Claude / GPT / Gemini 比結果，輸贏一目了然。</div></div>
+                <div class="zone-card vendor"><div class="zone-card__id">V02 · 上半外排（中）· 暫定</div><div class="zone-card__title">Agent SaaS</div><div class="zone-card__sub">現場跑一條完整流程：從 input 到結果，全自動 agent 跑給你看。</div></div>
+                <div class="zone-card vendor"><div class="zone-card__id">V03 · 上半外排（右）· 暫定</div><div class="zone-card__title">圖像 / 影片生成</div><div class="zone-card__sub">30 秒幫你做出數位分身，當場存檔帶走。</div></div>
+                <div class="zone-card vendor"><div class="zone-card__id">V04 · 下半外排（左）· 暫定</div><div class="zone-card__title">語音 / Podcast</div><div class="zone-card__sub">AI 聲音複製試聽，把你的語音變成 podcast。</div></div>
+                <div class="zone-card vendor"><div class="zone-card__id">V05 · 下半外排（中）· 暫定</div><div class="zone-card__title">開發者工具</div><div class="zone-card__sub">vibe coding 即時體驗：說人話，秒生 app prototype。</div></div>
+                <div class="zone-card supply"><div class="zone-card__id">⊙ 中央補給 · 中軸島</div><div class="zone-card__title">酒水區 ＋ 點心區</div><div class="zone-card__sub">中央補給島，上下兩區共用。一杯入場禮（調酒/軟飲）＋自由取用點心輕食。換桌間流動取用，3-5 分鐘來回 → 這裡也是議題切換時最自然的「過場空間」。</div></div>
+                <div class="zone-card match"><div class="zone-card__id">⚜ 休息討論 · 下半外排（右）</div><div class="zone-card__title">休息討論區（可做工商媒合）</div><div class="zone-card__sub">不是 lounge、不是閉門席。3 張小桌 × 3 人 = 同時 9 席。給想短暫坐下深聊的人，順便作為 B 端主管／廠商私洽的媒合錨點 —— 媒合人員散場前 follow up。</div></div>
+              </div>
+            </div>
+
+            <!-- ============ SECTION 05: RIGHT BLOCK ============ -->
+            <div class="fp-section">
+              <div class="section-title">SECTION 05 / RIGHT BLOCK</div>
+              <h3 class="section-h2">右側區塊 — 投影幕 ＝ 打卡牆 ＝ 開幕舞台（三合一）</h3>
+              <p class="section-desc">
+                最右側整面牆作為三合一儀式區。<b>投影幕</b>就是<b>打卡牆</b>，平時投主視覺、開閉幕投 video／投票結果。
+                <b>舞台朝左</b>（講者面向觀眾），講者背後即投影幕作為背景。
+                上下立柱燈箱對稱放置，作為合照框景與品牌延伸。
+              </p>
+
+              <div class="right-block">
+                <div class="right-block__grid">
+                  <div class="right-block__item">
+                    <h4>① 投影幕 ＝ 打卡牆</h4>
+                    <p>右牆整面，<b>寬 6m × 高 3.5m</b>。三段內容切換：開場 video → 進行中主視覺 LOGO（打卡背景）→ 閉幕投票結果揭示。建議 LED 牆或高流明投影機。</p>
+                  </div>
+                  <div class="right-block__item">
+                    <h4>② 舞台</h4>
+                    <p>抬高 30cm、<b>深 1.2m × 寬 6m</b>。講者站位<b>朝左</b>面向觀眾。配講台＋麥克風＋備用麥架。開閉幕用，平時保持淨空作為打卡前景。</p>
+                  </div>
+                  <div class="right-block__item">
+                    <h4>③ 退距區</h4>
+                    <p>舞台前方 <b>~3m × 8m</b> 淨空。功能：開場時觀眾聚集站位 / 進行中為打卡退距 / 閉幕為司儀走位空間。不擺設備、不放椅子。</p>
+                  </div>
+                  <div class="right-block__item">
+                    <h4>④ 紅毯地貼</h4>
+                    <p>從議題區邊界一路鋪進退距區，<b>寬 1.5m × 長 ~3m</b>。視覺收口、引導動線、合照地標。延伸首場「儀式感」設計語言。</p>
+                  </div>
+                  <div class="right-block__item">
+                    <h4>⑤ 立柱燈箱 A（上）</h4>
+                    <p><b>1m × 1m × 高 2.5m</b>。內容：「末日議會 II」立體字 + 主 LOGO + 贊助商 logo 露出位（金主席）。合照時的左上框景。</p>
+                  </div>
+                  <div class="right-block__item">
+                    <h4>⑥ 立柱燈箱 B（下）</h4>
+                    <p><b>1m × 1m × 高 2.5m</b>。內容：七宗罪文字燈箱（PRIDE · ENVY · WRATH...） + 贊助商 logo。合照時的左下框景。對稱呼應立柱 A。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fp-timeline-heading">▸ 三段時序切換</div>
+              <div class="fp-timeline-grid">
+                <div class="fp-timeline-grid__cell">
+                  <div class="t">T-30 ▸ T-0</div>
+                  <div class="l">入場聚集</div>
+                  <div class="d">投影幕：倒數動畫 / 主視覺<br>觀眾：報到 → 中央島領酒 → 議題區走動</div>
+                </div>
+                <div class="fp-timeline-grid__cell">
+                  <div class="t">T+0 ▸ T+5</div>
+                  <div class="l">開幕儀式</div>
+                  <div class="d">投影幕：開幕 video<br>觀眾聚集退距區面向舞台<br>司儀上舞台</div>
+                </div>
+                <div class="fp-timeline-grid__cell">
+                  <div class="t">T+5 ▸ T+95</div>
+                  <div class="l">議題交流</div>
+                  <div class="d">投影幕：主視覺 LOGO 常駐<br>每 15-20 分鐘一輪議題切換<br>中央島流動補給</div>
+                </div>
+                <div class="fp-timeline-grid__cell">
+                  <div class="t">T+95 ▸ T+100</div>
+                  <div class="l">投票揭示</div>
+                  <div class="d">投影幕：戲劇化結果動畫<br>觀眾再次面向舞台<br>司儀宣布</div>
+                </div>
+                <div class="fp-timeline-grid__cell">
+                  <div class="t">T+100 ▸ T+115</div>
+                  <div class="l">閉幕致詞</div>
+                  <div class="d">司儀＋嘉賓上舞台<br>感謝贊助商 logo 滾動<br>合影鋪陳</div>
+                </div>
+                <div class="fp-timeline-grid__cell">
+                  <div class="t">T+115 ▸ T+120</div>
+                  <div class="l">散場合照</div>
+                  <div class="d">投影幕：靜態主視覺<br>紅毯動線開啟<br>立柱 A/B 入鏡框景</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============ SECTION 06: CAPACITY (DUAL VIEW) ============ -->
+            <div class="fp-section">
+              <div class="section-title">SECTION 06 / CAPACITY · DUAL VIEW</div>
+              <h3 class="section-h2">容量計算 — 雙視角（穩態 vs 聚集）</h3>
+              <p class="section-desc">
+                200 人不是「靜態席次加總」，是<b>分時段的人流分佈</b>。
+                <b>穩態時段</b>（議題進行 ~85 分鐘）—— 95% 的人散在議題區，廠商與補給是配角。
+                <b>聚集時段</b>（開幕／閉幕 ~15 分鐘）—— 90% 的人聚到退距區面向舞台，議題桌暫空。
+                實體議題容量設計上限 <b>~280–300 席</b>，給 200 人 ~30% 緩衝，不會塞爆。
+              </p>
+
+              <div class="capacity__viewpoint">視角 A · 議題進行（穩態 / 約 85 分鐘）</div>
+              <div class="capacity">
+                <div class="capacity__cell">
+                  <div class="capacity__label">感性區</div>
+                  <div class="capacity__num">~95</div>
+                  <div class="capacity__detail">10 議題 × 2~3 桌 × 3~5 人<br>實體上限 ~140 席</div>
+                </div>
+                <div class="capacity__cell">
+                  <div class="capacity__label">理性區</div>
+                  <div class="capacity__num">~85</div>
+                  <div class="capacity__detail">10 議題 × 2~3 桌 × 3~5 人<br>實體上限 ~140 席</div>
+                </div>
+                <div class="capacity__cell">
+                  <div class="capacity__label">體驗型廠商</div>
+                  <div class="capacity__num">15-25</div>
+                  <div class="capacity__detail">5 攤 × 3~5 人<br>站立流動 / 隨時換</div>
+                </div>
+                <div class="capacity__cell">
+                  <div class="capacity__label">中央補給</div>
+                  <div class="capacity__num">~10</div>
+                  <div class="capacity__detail">酒水 + 點心<br>3~5 分鐘來回</div>
+                </div>
+                <div class="capacity__cell">
+                  <div class="capacity__label">休息討論區</div>
+                  <div class="capacity__num">9</div>
+                  <div class="capacity__detail">3 桌 × 3 人<br>可做工商媒合</div>
+                </div>
+                <div class="capacity__cell amber">
+                  <div class="capacity__label">穩態合計</div>
+                  <div class="capacity__num">~200</div>
+                  <div class="capacity__detail">議題區 ~90%<br>補給 + 廠商 + 休息 ~10%</div>
+                </div>
+              </div>
+
+              <div class="capacity__viewpoint">視角 B · 開幕／閉幕／投票揭示（聚集 / 約 15 分鐘）</div>
+              <div class="capacity">
+                <div class="capacity__cell">
+                  <div class="capacity__label">退距區聚集</div>
+                  <div class="capacity__num">~180</div>
+                  <div class="capacity__detail">站立面向舞台<br>紅毯延伸區</div>
+                </div>
+                <div class="capacity__cell">
+                  <div class="capacity__label">議題區（暫空）</div>
+                  <div class="capacity__num">0</div>
+                  <div class="capacity__detail">桌邊清空<br>人流向退距區</div>
+                </div>
+                <div class="capacity__cell">
+                  <div class="capacity__label">中央補給</div>
+                  <div class="capacity__num">~5</div>
+                  <div class="capacity__detail">少量持續取用</div>
+                </div>
+                <div class="capacity__cell">
+                  <div class="capacity__label">動線流動</div>
+                  <div class="capacity__num">~15</div>
+                  <div class="capacity__detail">遲到 / 上廁所 /<br>後台 / 工作人員</div>
+                </div>
+                <div class="capacity__cell amber">
+                  <div class="capacity__label">聚集合計</div>
+                  <div class="capacity__num">~200</div>
+                  <div class="capacity__detail">退距區 ~90%<br>邊緣 ~10%</div>
+                </div>
+              </div>
+
+              <p class="section-desc" style="margin-top: 20px;">
+                <b>動態流動設計：</b>每議題輪 15~20 分鐘，鼓勵中途換桌。一個人在 90 分鐘議題段平均接觸 <b>4~6 個議題</b>，
+                期間穿插 1~2 次中央補給、可能逛 1~2 個廠商、若有需要可坐進休息討論區短聊。
+                廠商攤位、休息討論區、中央補給站全程開放，不切換。
+              </p>
+            </div>
+
+          </div>
+        </details>
+
+        <div class="floor-plan__cta">
+          <a href="floor-plan.html" target="_blank" rel="noopener">→ 看 v3 完整部署規格頁（floor-plan.html）</a>
+        </div>
+      </div>
 
       <div class="budget">
 
