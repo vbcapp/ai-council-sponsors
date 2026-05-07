@@ -545,6 +545,33 @@
       margin-bottom: 56px;
     }
 
+    .verified-callout {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: var(--amber-soft);
+      border: 1px solid var(--amber);
+      border-left: 3px solid var(--amber-bright);
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      color: var(--amber-bright);
+      margin-top: -32px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .verified-callout strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .verified-callout .arrow {
+      color: var(--text-muted);
+      margin: 0 4px;
+    }
+
     /* ═══════════════════════════════════════════════════════════
      CH.01 — DATA RECORD
      ═══════════════════════════════════════════════════════════ */
@@ -1858,6 +1885,31 @@
       color: var(--text-dim);
     }
 
+    .anchor--main {
+      padding: 38px 24px;
+      margin-bottom: 22px;
+      border: 1px solid var(--amber);
+      background: var(--bg-elevated);
+    }
+
+    .anchor--main .anchor__price {
+      font-size: 32px;
+      color: var(--amber-bright);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .anchor--main .anchor__note {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+    }
+
+    @media (max-width: 640px) {
+      .anchor--main .anchor__price {
+        font-size: 24px;
+      }
+    }
+
     .anchors__footer {
       font-family: var(--serif);
       font-size: 14px;
@@ -2935,6 +2987,10 @@
         與題目調性的共鳴測試。這是全台最難「買到」的一種注意力類型。
       </p>
 
+      <div class="verified-callout reveal">
+        ✓ 以下為第一屆 100 人實際驗證成果 <span class="arrow">→</span> <strong>第二屆規模 ×2，這份注意力會更厚。</strong>
+      </div>
+
       <div class="data-record reveal">
         <div class="data-record__header">
           <span class="tag">◉ DATA · TICKETING · 2026.03.28</span>
@@ -3257,20 +3313,8 @@
         為什麼需要<span class="amber">你的贊助</span>
       </h2>
       <p class="section__desc reveal">
-        我們不分等級、不冠名、不販售權益階梯。
-        把成本攤開——你看到的，就是這場活動真實的樣子。
+        把這場活動的成本攤開——讓你知道這份贊助會去到哪裡。
       </p>
-
-      <div class="budget-intro reveal">
-        <div>
-          <div class="budget-intro__label">◉ COST REALITY · 300 PEOPLE EVENT</div>
-          <div class="budget-intro__scenario">
-            一場正規執行需 <span class="amber">$400,000</span><br>
-            我們只募 <span class="amber">$150,000</span>
-          </div>
-        </div>
-        <div class="budget-intro__tag">✓ 其餘以專業、熱情、夥伴關係補齊</div>
-      </div>
 
       <div class="budget">
 
@@ -3345,24 +3389,14 @@
       </div>
 
       <div class="anchors reveal">
-        <div class="anchors__head">◉ SUGGESTED · 建議金額錨點</div>
-        <div class="anchors__list">
-          <div class="anchor">
-            <div class="anchor__price">$10,000</div>
-            <div class="anchor__note">起跳門檻</div>
-          </div>
-          <div class="anchor">
-            <div class="anchor__price">$30,000</div>
-            <div class="anchor__note">中堅夥伴</div>
-          </div>
-          <div class="anchor">
-            <div class="anchor__price">$50,000</div>
-            <div class="anchor__note">深度共創</div>
-          </div>
+        <div class="anchors__head">◉ MAIN SPONSOR · 主贊助方案</div>
+        <div class="anchor anchor--main">
+          <div class="anchor__price">NT$100,000 – $150,000</div>
+          <div class="anchor__note">一家品牌 · 4 個月深度合作</div>
         </div>
         <div class="anchors__footer">
-          不分等級、不設上限——<span class="em">你決定要參與多少</span>。<br>
-          金額越高，團隊越能專注把事情做好。
+          我們希望由<span class="em">一家品牌作為主贊助</span>——<br>
+          把資源集中、把品牌做深，比分散貼 Logo 更有效。
         </div>
       </div>
     </div>
@@ -3377,16 +3411,16 @@
     <div class="section__inner">
       <div class="section__head reveal">
         <div class="section__chapter">CH.07 _ BENEFITS.log</div>
-        <div class="section__meta">SHARED BENEFITS · ALL SPONSORS</div>
+        <div class="section__meta">MAIN SPONSOR PACKAGE · NT$150K</div>
       </div>
 
       <h2 class="section__title reveal">
         你能獲得什麼<br>
-        <span class="amber">不分大小，一視同仁</span>
+        <span class="amber">NT$150,000 可擁有的</span>
       </h2>
       <p class="section__desc reveal">
-        每一位贊助夥伴皆享以下完整權益。沒有金級銀級之分、沒有冠名差異——
-        因為「一起把事做好」這件事本身，不該分階級。
+        以下是主贊助方案的完整權益。從 5 月暖場到 9 月活動，再到會後長尾——
+        每一項都是你的品牌真實出現的觸點。
       </p>
 
       <div class="benefits">
@@ -3421,7 +3455,7 @@
       </div>
 
       <div class="benefits-note reveal">
-        不販售階梯、不冠名差異——<br>
+        不販售菜單式階梯、不販售冠名——<br>
         最好的贊助關係是 <span class="em">「我們一起讓這件事發生」</span>。
       </div>
     </div>
